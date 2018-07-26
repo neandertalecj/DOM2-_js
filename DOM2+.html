@@ -1,0 +1,123 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>test 1</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<style>
+			
+			body{
+				margin: 40px;
+			}
+			input{
+				outline: none;
+
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="zet">
+			<div id="ten"></div>
+			<ul>
+				<li>items1</li>
+				<li>items2</li>
+				<li>items3</li>
+			</ul>
+		</div>
+		<ul id="myList">
+			<li>item1<button data-action="delPrev">delPrev</button><button data-action="delNext">delNext</button></li>
+			<li>item2<button data-action="delPrev">delPrev</button><button data-action="delNext">delNext</button></li>
+			<li>item3<button data-action="delPrev">delPrev</button><button data-action="delNext">delNext</button></li>
+			<li>item4<button data-action="delPrev">delPrev</button><button data-action="delNext">delNext</button></li>
+			<li>item5<button data-action="delPrev">delPrev</button><button data-action="delNext">delNext</button></li>
+			<li>item6<button data-action="delPrev">delPrev</button><button data-action="delNext">delNext</button></li>
+			<li>item7<button data-action="delPrev">delPrev</button><button data-action="delNext">delNext</button></li>
+			<li>item8<button data-action="delPrev">delPrev</button><button data-action="delNext">delNext</button></li>
+		</ul>
+	</body>
+
+	<script>
+	//--------------------------------------------------------------------------------
+	//-------------------Create element-----------------------------------------------
+		var p = document.createElement('p');
+		var textTen = document.createTextNode('Some text');
+		p.classList.add('something');
+		var elTen = p.appendChild(textTen);
+		document.getElementById('ten').appendChild(elTen);
+	//------------------------------------------------------------------
+	var zet = document.getElementById('zet');
+
+	var newLi = document.createElement('li');
+	newLi.innerHTML = 'It\'s new "li"';
+	var temp10 = document.getElementsByTagName('li');
+	zet.getElementsByTagName('ul')[0].insertBefore(newLi, temp10[1]);
+	//------------------------------------------------------------------
+	//cloneNode() -     скопіює сам елемент без дочірніх і без текста
+	//cloneNode(true) - скопіює сам елемент з дочірніми
+	//removeChild()
+	//replaceChild()
+	//------------------------------------------------------------------
+	var ul10 = zet.querySelector('ul');
+	var lis10 = zet.querySelectorAll('li');
+	var newLi101 = lis10[0].cloneNode(true);
+	ul10.appendChild(newLi101);
+	var newUl10 = ul10.cloneNode(true);
+	zet.appendChild(newUl10);
+	//-------------------------------------------------------------------
+	ul10.removeChild(lis10[0]);
+	var newLi102 = document.createElement('li');
+	newLi102.innerHTML = 'Replaced NEW li ';
+	ul10.replaceChild(newLi102, lis10[2]);
+	//------------------------------------------------------------------
+	//------------------------------------------------------------------
+	function handler1(e){
+		if (e.target.tagName == 'BUTTON'){
+			switch(e.target.getAttribute('data-action')) {
+				case 'delNext':
+					delNext(e.target.parentNode);
+					console.log(e.target.parentNode); //li
+					 break;
+				case 'delPrev':
+					delPrev(e.target.parentNode);
+					break;
+			}
+		}
+	}
+	function delNext(el){
+		var target = el.nextElementSibling;
+		var parent = el.parentNode;
+		if(target){  //якщо існує
+			parent.removeChild(target);
+		}
+	}
+	function delPrev(el){
+		var target = el.prevElementSibling;
+		var parent = el.parentNode;
+		if(target){  //якщо існує
+			parent.removeChild(target);
+		}
+	}
+	document.getElementById('myList').addEventListener('click', handler1);
+	//------------------------------------------------------------------
+	//------------------------------------------------------------------
+	//str.indexOf()
+	//str.lastIndexOf()
+	var string1 = 'Hello world';
+	var pos = string1.indexOf(' ');//5
+	if(pos != -1) {
+		console.log('Провірка на присутність елемента');
+	}
+	string1.lastIndexOf('war', 5); //поч з 5-го. Рахуєм завжди з поч.
+	string1.substring(0, 5);
+	string1.substring(0, pos);
+	string1.substr(0, 8); //другий парам кільк символів
+	string1.slice(0, -3); //верне без останніх трьох символів
+	string1.replace('w', 'h');
+	string1.charCodeAt(0); //взнати код символа
+	// .fromCharCode() - получити символ із коду
+	//------------------------------------------------------------------
+	//------------------------------------------------------------------
+
+
+	</script>
+</html>
