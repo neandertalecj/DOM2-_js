@@ -25,14 +25,14 @@
 			</ul>
 		</div>
 		<ul id="myList">
-			<li>item1<button data-action="delPrev">delPrev</button><button data-action="delNext">delNext</button></li>
-			<li>item2<button data-action="delPrev">delPrev</button><button data-action="delNext">delNext</button></li>
-			<li>item3<button data-action="delPrev">delPrev</button><button data-action="delNext">delNext</button></li>
-			<li>item4<button data-action="delPrev">delPrev</button><button data-action="delNext">delNext</button></li>
-			<li>item5<button data-action="delPrev">delPrev</button><button data-action="delNext">delNext</button></li>
-			<li>item6<button data-action="delPrev">delPrev</button><button data-action="delNext">delNext</button></li>
-			<li>item7<button data-action="delPrev">delPrev</button><button data-action="delNext">delNext</button></li>
-			<li>item8<button data-action="delPrev">delPrev</button><button data-action="delNext">delNext</button></li>
+			<li>item1<button data-action="devPrev">devPrev</button><button data-action="delNext">delNext</button></li>
+			<li>item2<button data-action="devPrev">devPrev</button><button data-action="delNext">delNext</button></li>
+			<li>item3<button data-action="devPrev">devPrev</button><button data-action="delNext">delNext</button></li>
+			<li>item4<button data-action="devPrev">devPrev</button><button data-action="delNext">delNext</button></li>
+			<li>item5<button data-action="devPrev">devPrev</button><button data-action="delNext">delNext</button></li>
+			<li>item6<button data-action="devPrev">devPrev</button><button data-action="delNext">delNext</button></li>
+			<li>item7<button data-action="devPrev">devPrev</button><button data-action="delNext">delNext</button></li>
+			<li>item8<button data-action="devPrev">devPrev</button><button data-action="delNext">delNext</button></li>
 		</ul>
 	</body>
 
@@ -69,37 +69,58 @@
 	newLi102.innerHTML = 'Replaced NEW li ';
 	ul10.replaceChild(newLi102, lis10[2]);
 	//------------------------------------------------------------------
-	//------------------------------------------------------------------
+	//--------Remove next or previous  element--------------------------
 	function handler1(e){
 		if (e.target.tagName == 'BUTTON'){
 			switch(e.target.getAttribute('data-action')) {
 				case 'delNext':
 					delNext(e.target.parentNode);
-					console.log(e.target.parentNode); //li
+					// console.log(e.target.parentNode); //li
 					 break;
-				case 'delPrev':
-					delPrev(e.target.parentNode);
+				case 'devPrev':
+					devPrev(e.target.parentNode);
 					break;
 			}
 		}
 	}
+
 	function delNext(el){
 		var target = el.nextElementSibling;
+		console.log(target);
 		var parent = el.parentNode;
 		if(target){  //якщо існує
 			parent.removeChild(target);
 		}
 	}
-	function delPrev(el){
-		var target = el.prevElementSibling;
+
+	function devPrev(el){
+		var target = el.previousElementSibling;
+		console.log(target);
 		var parent = el.parentNode;
-		if(target){  //якщо існує
+		if(target){  
 			parent.removeChild(target);
 		}
 	}
 	document.getElementById('myList').addEventListener('click', handler1);
 	//------------------------------------------------------------------
 	//------------------------------------------------------------------
+	  var ac = '12.5d';
+	parseInt(ac); //number 12
+	parseFloat(ac); // number 12.5
+	  var av = 4;
+	av.toFixed(2); //string 4.00
+	'dfghkfkfk'.length; //9
+	  var strN = 'abcd';
+	strN.charAt(0); //'a'
+	strN[2]; // c
+	strN.toUpperCase(); //'ABCD'
+	strN.toLowerCase(); 
+
+	var someNum = 6;
+	console.log('0' + someNum); //06
+
+	// \u + ...     \u1027    unicode
+
 	//str.indexOf()
 	//str.lastIndexOf()
 	var string1 = 'Hello world';
