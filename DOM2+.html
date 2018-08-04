@@ -34,6 +34,28 @@
 			<li>item7<button data-action="devPrev">devPrev</button><button data-action="delNext">delNext</button></li>
 			<li>item8<button data-action="devPrev">devPrev</button><button data-action="delNext">delNext</button></li>
 		</ul>
+		<hr>
+
+		<div class="calend-wrap">
+			<div class="calend-head">
+				<p>Year</p>
+				<p>Month</p>
+			</div>
+			<div class="calend-table">
+				<caption>Today</caption>
+				<table id="t">
+					<tr>
+						<th>Пн</th>
+						<th>Вт</th>
+						<th>Ср</th>
+						<th>Чт</th>
+						<th>Пт</th>
+						<th>Сб</th>
+						<th>Нд</th>
+					</tr>
+				</table>
+			</div>
+		</div>
 	</body>
 
 	<script>
@@ -137,7 +159,50 @@
 	string1.charCodeAt(0); //взнати код символа
 	// .fromCharCode() - получити символ із коду
 	//------------------------------------------------------------------
-	//------------------------------------------------------------------
+	//---------------Calendar-------------------------------------------
+	var nowDate = new Date();
+	var today = nowDate.getDate(); //?
+	var currentMonth = nowDate.getMonth();
+	var currentYear = nowDate.getFullYear();
+	var temp11 = new Date(currentYear, currentMonth + 1, 0);
+	var lastDay = temp11.getDate();
+
+	function createTable(){
+		var d = new Date(currentYear, currentMonth, 1);
+		var t = d.getDay() - 1;
+		if (t < 0) {
+			t = 6;
+		}
+
+		var a = 0;
+		while (d.getMonth() == currentMonth) {
+			var tr = document.createElement('tr');
+			var i = 0;
+			while (i < 7) {
+				var td = document.createElement('td');
+				if (a == 0) {
+					if (i < t) {
+						td.innerHTML = '';
+					} else {
+						td.innerHTML = d.getDate();
+						d.setDate(d.getDate() + 1);
+					}
+				} else {
+					td.innerHTML = d.getDate();
+					d.setDate(d.getDate() + 1);
+				}
+				tr.appendChild(td);
+				i++;
+
+				if (d.getDate() == lastDay) {
+					break;
+				}
+
+			} //end while
+			document.getElementById('t').appendChild(tr);
+			a++;
+		}//end while
+	}
 
 
 	</script>
