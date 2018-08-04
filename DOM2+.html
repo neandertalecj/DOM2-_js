@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>test 1</title>
+		<title>DOM 2</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<style>
 			
@@ -181,7 +181,7 @@
 			while (i < 7) {
 				var td = document.createElement('td');
 				if (a == 0) {
-					if (i < t) {
+					if (i < t ) {
 						td.innerHTML = '';
 					} else {
 						td.innerHTML = d.getDate();
@@ -191,18 +191,22 @@
 					td.innerHTML = d.getDate();
 					d.setDate(d.getDate() + 1);
 				}
+
 				tr.appendChild(td);
 				i++;
-
-				if (d.getDate() == lastDay) {
-					break;
-				}
-
 			} //end while
+
+			if (d.getDate() == lastDay) { //ПЕРЕМІСТИТИ!!!
+				break;
+			}
+
+
 			document.getElementById('t').appendChild(tr);
 			a++;
 		}//end while
 	}
+
+	createTable();
 
 
 	</script>
